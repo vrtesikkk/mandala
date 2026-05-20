@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<title>Mandala Game</title>
+</head>
+<body>
+
+<div class="screen active" id="startScreen">
+  <div class="title">MANDALA</div>
+  <div class="tagline">study · remember · paint</div>
+  <div class="diff-row">
+    <div class="diff-card easy" onclick="startGame('easy')">
+      <div class="diff-name">EASY</div>
+      <div class="diff-desc">6-fold · 6 colors</div>
+    </div>
+    <div class="diff-card medium" onclick="startGame('medium')">
+      <div class="diff-name">MEDIUM</div>
+      <div class="diff-desc">8-fold · 8 colors</div>
+    </div>
+    <div class="diff-card hard" onclick="startGame('hard')">
+      <div class="diff-name">HARD</div>
+      <div class="diff-desc">12-fold · 10 colors</div>
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="refScreen">
+  <div class="screen-title">STUDY THE MANDALA</div>
+  <div class="screen-sub">Remember the colors, then click when you're ready to paint</div>
+  <canvas id="refCanvas" width="500" height="500" class="canvas-glow"></canvas>
+  <div class="btn-row">
+    <button class="btn btn-ghost" onclick="showScreen('startScreen')">← Back</button>
+    <button class="btn btn-gold" onclick="showPaint()">I'm Ready</button>
+  </div>
+</div>
+
+<div class="screen" id="paintScreen">
+  <div class="paint-info">
+    <button class="btn btn-ghost" style="padding:7px 18px;font-size:.8em;" onclick="showScreen('startScreen')">← Back</button>
+    <span class="hint">Click regions to fill</span>
+    <div class="current-color-ring" id="colorRing"></div>
+    <button class="btn btn-ghost" id="peekBtn" style="padding:7px 18px;font-size:.8em;" onclick="togglePeek()">Show Mandala</button>
+    <button class="btn btn-ghost" style="padding:7px 18px;font-size:.8em;" onclick="undo()">Undo</button>
+    <button class="btn btn-gold" style="padding:9px 24px;" onclick="showFinish()">Finish</button>
+  </div>
+  <div class="paint-layout">
+    <div class="palette-panel">
+      <div class="palette-label">COLORS</div>
+      <div id="swatches"></div>
+      <button class="eraser-btn" id="eraserBtn" onclick="toggleEraser()">✕ Erase</button>
+    </div>
+    <canvas id="paintCanvas" width="500" height="500"></canvas>
+  </div>
+</div>
+
+<div class="screen" id="finishScreen">
+  <div class="finish-title">COMPLETE</div>
+  <div class="accuracy-panel">
+    <div class="accuracy-score" id="accuracyScore">—</div>
+    <div class="accuracy-label">ACCURACY</div>
+  </div>
+  <canvas id="finishCanvas" width="500" height="500"></canvas>
+  <div class="btn-row">
+    <button class="btn btn-ghost" onclick="showScreen('startScreen')">Play Again</button>
+    <button class="btn btn-gold" onclick="saveMandala()">Save Image</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
